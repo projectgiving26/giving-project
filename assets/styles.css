@@ -82,6 +82,17 @@
 }
 .video-card:hover .video-play span{ background:rgba(0,0,0,.72); transform:scale(1.06); }
 .video-play svg{ width:20px; height:20px; fill:#fff; margin-left:2px; }
+.video-thumb.ig-thumb{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color:#fff;
+}
+.video-thumb.ig-thumb svg{ width:34px; height:34px; }
+.video-thumb.ig-thumb span.ig-label{ font-size:13px; font-weight:600; letter-spacing:.02em; }
 .video-body{ padding:16px 18px 18px; }
 .video-title{
   margin:0 0 6px;
