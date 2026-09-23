@@ -321,7 +321,8 @@
         document.querySelectorAll(".nav-links a[data-nav], .mobile-menu a[data-nav]").forEach(a => {
           a.classList.remove("active");
           const href = a.getAttribute("href") || "";
-          if (normalizePath(href) === current) a.classList.add("active");
+          const hrefPath = new URL(href, location.href).pathname;
+          if (normalizePath(hrefPath) === current) a.classList.add("active");
         });
       }
 
@@ -382,7 +383,7 @@
           return;
         }
 
-        // ✅ 2) 站內頁面 + hash：/giving-project/#timeline 或 /apply/#xxx
+        // ✅ 2) 站內頁面 + hash：./#timeline 或 apply/#xxx
         // 只攔截同源（你的 GitHub Pages）且標註 data-nav 的連結
         if (a.hasAttribute("data-nav")) {
           e.preventDefault();

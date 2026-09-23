@@ -47,7 +47,8 @@
         document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
           a.classList.remove("active");
           const href = a.getAttribute("href") || "";
-          if (normalizePath(href) === current) a.classList.add("active");
+          const hrefPath = new URL(href, location.href).pathname;
+          if (normalizePath(hrefPath) === current) a.classList.add("active");
         });
       }
 
