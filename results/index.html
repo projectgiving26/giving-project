@@ -5,27 +5,36 @@
   <title>Giving 行動計畫｜行動成果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Giving 行動計畫行動成果展示。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="/giving-project/assets/styles.css">
-
 </head>
 
 <body>
   <div class="nav">
     <div class="nav-inner">
-      <div class="brand"><span class="dot"></span>Giving 行動計畫</div>
+      <div class="brand" data-en="The Giving Project"><span class="dot"></span>Giving 行動計畫</div>
       <div class="nav-links">
-        <a data-nav href="/giving-project/">計畫介紹</a>
-        <a data-nav href="/giving-project/apply/">報名辦法</a>
-        <a data-nav href="/giving-project/results/">行動成果</a>
+        <a data-nav href="/giving-project/" data-en="About">計畫介紹</a>
+        <a data-nav href="/giving-project/apply/" data-en="Apply">報名辦法</a>
+        <a data-nav href="/giving-project/results/" data-en="Results">行動成果</a>
       </div>
-      <span class="btn closed">報名已截止</span>
+      <span class="btn closed" data-en="Applications Closed">報名已截止</span>
+      <button class="lang-toggle" aria-label="Switch to English">EN</button>
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單">☰</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a data-nav href="/giving-project/" data-en="About">計畫介紹</a>
+      <a data-nav href="/giving-project/apply/" data-en="Apply">報名辦法</a>
+      <a data-nav href="/giving-project/results/" data-en="Results">行動成果</a>
     </div>
   </div>
 
   <main id="content" class="container">
     <section style="border-top:none; padding-top:18px;">
-      <h1>行動成果</h1>
-      <p class="lead">五組提案的行動成果，皆以影片方式記錄。點擊卡片即可觀看完整內容。</p>
+      <h1 data-en="Results">行動成果</h1>
+      <p class="lead" data-en="Results from all five proposals, documented on video. Click a card to watch the full video.">五組提案的行動成果，皆以影片方式記錄。點擊卡片即可觀看完整內容。</p>
 
       <div class="video-grid">
         <a class="video-card" href="https://www.youtube.com/watch?v=gWOOSOIIjD4&t=77s" target="_blank" rel="noopener">
@@ -34,7 +43,7 @@
             <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           </div>
           <div class="video-body">
-            <p class="video-title">被詐騙卻被起訴? 談人頭帳戶的法律風險</p>
+            <p class="video-title" data-en="Scammed, Then Prosecuted? The Legal Risks of Bank Mule Accounts">被詐騙卻被起訴? 談人頭帳戶的法律風險</p>
             <p class="video-names">吳翼名 Sean Wu &amp; 李昀洋 Hubert Lee &amp; 胡桓 Eric Hu</p>
           </div>
         </a>
@@ -45,7 +54,7 @@
             <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           </div>
           <div class="video-body">
-            <p class="video-title">「2025得地為業-創新創業課程」剪影</p>
+            <p class="video-title" data-en="Highlights: 2025 &quot;Inheriting the Land&quot; Innovation &amp; Entrepreneurship Course">「2025得地為業-創新創業課程」剪影</p>
             <p class="video-names">馬恩博 Albert Ma</p>
           </div>
         </a>
@@ -56,7 +65,7 @@
             <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           </div>
           <div class="video-body">
-            <p class="video-title">「同路人-聖公會青年的成長、困難與挑戰」</p>
+            <p class="video-title" data-en="Fellow Travelers: Growth, Struggles, and Challenges of Episcopal Youth">「同路人-聖公會青年的成長、困難與挑戰」</p>
             <p class="video-names">徐佩筠</p>
           </div>
         </a>
@@ -67,7 +76,7 @@
             <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           </div>
           <div class="video-body">
-            <p class="video-title">「沒撐傘的人」</p>
+            <p class="video-title" data-en="Those Without an Umbrella">「沒撐傘的人」</p>
             <p class="video-names">粘容瑜 Fish &amp; 鄒靜 Angelina</p>
           </div>
         </a>
@@ -78,7 +87,7 @@
             <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           </div>
           <div class="video-body">
-            <p class="video-title">「我的媽媽-客家媳婦信主記」</p>
+            <p class="video-title" data-en="My Mother: A Hakka Daughter-in-Law's Journey to Faith">「我的媽媽-客家媳婦信主記」</p>
             <p class="video-names">彭汶澤 &amp; 彭博澤</p>
           </div>
         </a>
@@ -87,62 +96,9 @@
   </main>
 
   <footer>
-    <div class="container">© Giving 行動計畫</div>
+    <div class="container" data-en="© The Giving Project">© Giving 行動計畫</div>
   </footer>
 
-  <script>
-    (function () {
-      const content = document.getElementById("content");
-      if (!content) return;
-
-      function normalizePath(p) {
-        return (p || "/").replace(/index\.html$/i, "").replace(/\/+$/, "/");
-      }
-      function setActiveNav(pathname) {
-        const current = normalizePath(pathname);
-        document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
-          a.classList.remove("active");
-          const href = a.getAttribute("href") || "";
-          const hrefPath = new URL(href, location.href).pathname;
-          if (normalizePath(hrefPath) === current) a.classList.add("active");
-        });
-      }
-
-      async function loadPage(url, push) {
-        content.classList.add("is-loading");
-        try {
-          const res = await fetch(url, { credentials: "same-origin" });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const html = await res.text();
-          const doc = new DOMParser().parseFromString(html, "text/html");
-          const next = doc.getElementById("content");
-          if (!next) return (window.location.href = url);
-
-          content.innerHTML = next.innerHTML;
-          document.title = doc.title || document.title;
-          if (push) history.pushState({}, "", url);
-          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-          setActiveNav(location.pathname);
-        } catch (e) {
-          window.location.href = url;
-        } finally {
-          requestAnimationFrame(() => content.classList.remove("is-loading"));
-        }
-      }
-
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest("a[data-nav]");
-        if (!a) return;
-        if (e.metaKey || e.ctrlKey) return;
-        const href = a.getAttribute("href") || "";
-        if (href.includes("#")) return;
-        e.preventDefault();
-        loadPage(href, true);
-      });
-
-      window.addEventListener("popstate", () => loadPage(location.pathname, false));
-      setActiveNav(location.pathname);
-    })();
-  </script>
+  <script src="/giving-project/assets/site.js"></script>
 </body>
 </html>
