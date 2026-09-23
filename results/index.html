@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>Giving 行動計畫｜行動成果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Giving 行動計畫行動成果展示。">
+  <link rel="stylesheet" href="/giving-project/assets/styles.css">
+
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span>Giving 行動計畫</div>
+      <div class="nav-links">
+        <a data-nav href="/giving-project/">計畫介紹</a>
+        <a data-nav href="/giving-project/apply/">報名辦法</a>
+        <a data-nav href="/giving-project/results/">行動成果</a>
+      </div>
+      <span class="btn closed">報名已截止</span>
+    </div>
+  </div>
+
+  <main id="content" class="container">
+    <section style="border-top:none; padding-top:18px;">
+      <h1>行動成果</h1>
+      <p class="lead">五組提案的行動成果，皆以影片方式記錄。點擊卡片即可觀看完整內容。</p>
+
+      <div class="video-grid">
+        <a class="video-card" href="https://www.youtube.com/watch?v=gWOOSOIIjD4&t=77s" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/gWOOSOIIjD4/hqdefault.jpg" alt="被詐騙卻被起訴? 談人頭帳戶的法律風險" loading="lazy">
+            <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+          </div>
+          <div class="video-body">
+            <p class="video-title">被詐騙卻被起訴? 談人頭帳戶的法律風險</p>
+            <p class="video-names">吳翼名 Sean Wu &amp; 李昀洋 Hubert Lee &amp; 胡桓 Eric Hu</p>
+          </div>
+        </a>
+
+        <a class="video-card" href="https://www.youtube.com/watch?v=6GC29-LbLqQ" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/6GC29-LbLqQ/hqdefault.jpg" alt="2025得地為業-創新創業課程 剪影" loading="lazy">
+            <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+          </div>
+          <div class="video-body">
+            <p class="video-title">「2025得地為業-創新創業課程」剪影</p>
+            <p class="video-names">馬恩博 Albert Ma</p>
+          </div>
+        </a>
+
+        <a class="video-card" href="https://www.youtube.com/watch?v=TEeG6-zTFS0" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/TEeG6-zTFS0/hqdefault.jpg" alt="同路人-聖公會青年的成長、困難與挑戰" loading="lazy">
+            <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+          </div>
+          <div class="video-body">
+            <p class="video-title">「同路人-聖公會青年的成長、困難與挑戰」</p>
+            <p class="video-names">徐佩筠</p>
+          </div>
+        </a>
+
+        <a class="video-card" href="https://www.youtube.com/watch?v=uwluUn_R3RY" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/uwluUn_R3RY/hqdefault.jpg" alt="沒撐傘的人" loading="lazy">
+            <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+          </div>
+          <div class="video-body">
+            <p class="video-title">「沒撐傘的人」</p>
+            <p class="video-names">粘容瑜 Fish &amp; 鄒靜 Angelina</p>
+          </div>
+        </a>
+
+        <a class="video-card" href="https://www.youtube.com/watch?v=FHY10cCxR0Q&t=2243s" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/FHY10cCxR0Q/hqdefault.jpg" alt="我的媽媽-客家媳婦信主記" loading="lazy">
+            <span class="video-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+          </div>
+          <div class="video-body">
+            <p class="video-title">「我的媽媽-客家媳婦信主記」</p>
+            <p class="video-names">彭汶澤 &amp; 彭博澤</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© Giving 行動計畫</div>
+  </footer>
+
+  <script>
+    (function () {
+      const content = document.getElementById("content");
+      if (!content) return;
+
+      function normalizePath(p) {
+        return (p || "/").replace(/index\.html$/i, "").replace(/\/+$/, "/");
+      }
+      function setActiveNav(pathname) {
+        const current = normalizePath(pathname);
+        document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
+          a.classList.remove("active");
+          const href = a.getAttribute("href") || "";
+          if (normalizePath(href) === current) a.classList.add("active");
+        });
+      }
+
+      async function loadPage(url, push) {
+        content.classList.add("is-loading");
+        try {
+          const res = await fetch(url, { credentials: "same-origin" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const next = doc.getElementById("content");
+          if (!next) return (window.location.href = url);
+
+          content.innerHTML = next.innerHTML;
+          document.title = doc.title || document.title;
+          if (push) history.pushState({}, "", url);
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          setActiveNav(location.pathname);
+        } catch (e) {
+          window.location.href = url;
+        } finally {
+          requestAnimationFrame(() => content.classList.remove("is-loading"));
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-nav]");
+        if (!a) return;
+        if (e.metaKey || e.ctrlKey) return;
+        const href = a.getAttribute("href") || "";
+        if (href.includes("#")) return;
+        e.preventDefault();
+        loadPage(href, true);
+      });
+
+      window.addEventListener("popstate", () => loadPage(location.pathname, false));
+      setActiveNav(location.pathname);
+    })();
+  </script>
+</body>
+</html>

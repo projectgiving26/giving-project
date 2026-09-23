@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>Giving 行動計畫｜申請辦法</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Giving 行動計畫申請辦法與流程。">
+  <link rel="stylesheet" href="/giving-project/assets/styles.css">
+
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span>Giving 行動計畫</div>
+      <div class="nav-links">
+        <a data-nav href="/giving-project/">計畫介紹</a>
+        <a data-nav href="/giving-project/apply/">報名辦法</a>
+        <a data-nav href="/giving-project/results/">行動成果</a>
+      </div>
+      <span class="btn closed">報名已截止</span>
+    </div>
+  </div>
+
+  <main id="content" class="container">
+    <section style="border-top:none; padding-top:18px;">
+      <h1>報名辦法</h1>
+      <p class="lead">本期報名已經截止，暫無開放報名，敬請期待下期。</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© Giving 行動計畫</div>
+  </footer>
+
+  <!-- PJAX -->
+  <script>
+    (function () {
+      const content = document.getElementById("content");
+      if (!content) return;
+
+      function normalizePath(p) {
+        return (p || "/").replace(/index\.html$/i, "").replace(/\/+$/, "/");
+      }
+      function setActiveNav(pathname) {
+        const current = normalizePath(pathname);
+        document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
+          a.classList.remove("active");
+          const href = a.getAttribute("href") || "";
+          if (normalizePath(href) === current) a.classList.add("active");
+        });
+      }
+
+      async function loadPage(url, push) {
+        content.classList.add("is-loading");
+        try {
+          const res = await fetch(url, { credentials: "same-origin" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const next = doc.getElementById("content");
+          if (!next) return (window.location.href = url);
+
+          content.innerHTML = next.innerHTML;
+          document.title = doc.title || document.title;
+          if (push) history.pushState({}, "", url);
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          setActiveNav(location.pathname);
+        } catch (e) {
+          window.location.href = url;
+        } finally {
+          requestAnimationFrame(() => content.classList.remove("is-loading"));
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-nav]");
+        if (!a) return;
+        if (e.metaKey || e.ctrlKey) return;
+        const href = a.getAttribute("href") || "";
+        if (href.includes("#")) return;
+        e.preventDefault();
+        loadPage(href, true);
+      });
+
+      window.addEventListener("popstate", () => loadPage(location.pathname, false));
+      setActiveNav(location.pathname);
+    })();
+  </script>
+</body>
+</html>

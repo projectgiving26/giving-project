@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>Giving 行動計畫｜FAQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Giving 行動計畫常見問題。">
+
+  <link rel="stylesheet" href="/giving-project/assets/styles.css">
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span>Giving 行動計畫</div>
+      <div class="nav-links">
+        <a data-nav href="/giving-project/">計畫介紹</a>
+        <a data-nav href="/giving-project/apply/">報名辦法</a>
+        <a data-nav href="/giving-project/results/">行動成果</a>
+      </div>
+      <span class="btn closed">報名已截止</span>
+    </div>
+  </div>
+
+  <main id="content" class="container">
+    <section style="border-top:none; padding-top:18px;">
+      <h1>常見問題（FAQ）</h1>
+      <p class="lead">目前此頁先公告聯絡方式。收到提問後，我們會整理並更新常見問題。</p>
+
+      <div class="card">
+        <div class="row">
+          <div class="icon">?</div>
+          <div>
+            <div style="font-weight:900; margin-bottom:6px;">目前暫無常見提問</div>
+            <div style="color:var(--muted);">歡迎來信提問：</div>
+            <div class="email">seanwu000tw@gmail.com</div>
+
+            <div style="margin-top:12px;">
+              <a class="btn" href="mailto:seanwu000tw@gmail.com?subject=Giving%20%E8%A1%8C%E5%8B%95%E8%A8%88%E7%95%AB%20FAQ%20%E6%8F%90%E5%95%8F">立即寄信</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© Giving 行動計畫</div>
+  </footer>
+
+  <script>
+    (function () {
+      const content = document.getElementById("content");
+      if (!content) return;
+
+      function normalizePath(p) {
+        return (p || "/").replace(/index\.html$/i, "").replace(/\/+$/, "/");
+      }
+      function setActiveNav(pathname) {
+        const current = normalizePath(pathname);
+        document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
+          a.classList.remove("active");
+          const href = a.getAttribute("href") || "";
+          if (normalizePath(href) === current) a.classList.add("active");
+        });
+      }
+
+      async function loadPage(url, push) {
+        content.classList.add("is-loading");
+        try {
+          const res = await fetch(url, { credentials: "same-origin" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const next = doc.getElementById("content");
+          if (!next) return (window.location.href = url);
+
+          content.innerHTML = next.innerHTML;
+          document.title = doc.title || document.title;
+          if (push) history.pushState({}, "", url);
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          setActiveNav(location.pathname);
+        } catch (e) {
+          window.location.href = url;
+        } finally {
+          requestAnimationFrame(() => content.classList.remove("is-loading"));
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-nav]");
+        if (!a) return;
+        if (e.metaKey || e.ctrlKey) return;
+        const href = a.getAttribute("href") || "";
+        if (href.includes("#")) return;
+        e.preventDefault();
+        loadPage(href, true);
+      });
+
+      window.addEventListener("popstate", () => loadPage(location.pathname, false));
+      setActiveNav(location.pathname);
+    })();
+  </script>
+</body>
+</html>
